@@ -7,6 +7,10 @@
 
             bool calculadora = true;
 
+            string[] opcoesValidas = { "1", "2", "3", "4", "5", "6", "S" };
+
+            List<string> historico = new List<string>();
+
             while (calculadora)
             {
                 Console.Clear();
@@ -21,17 +25,18 @@
                 Console.WriteLine("3 - Multiplicar");
                 Console.WriteLine("4 - Dividir");
                 Console.WriteLine("5 - Tabuada");
+                Console.WriteLine("6 - Hístórico");
                 Console.WriteLine("S - Sair");
 
-                Console.WriteLine();
-                Console.Write("Escolha uma opção: ");
+                Console.Write("\nEscolha uma opção: ");
 
                 string opcao = Console.ReadLine().ToUpper();
 
 
-                if (opcao != "1" && opcao != "2" && opcao != "3" && opcao != "4" && opcao != "5" && opcao != "S")
+                if (!opcoesValidas.Contains(opcao))
                 {
-                    Console.WriteLine("Opcão Inválida!");
+                    Console.WriteLine("\nOpcão Inválida!");
+                    Console.WriteLine("\nPressione ENTER para voltar!");
                     Console.ReadLine();
                     continue;
                 }
@@ -48,7 +53,7 @@
                     Console.WriteLine("Tabuada");
                     Console.WriteLine("--------------------------");
 
-                    Console.Write("Digite um número: ");
+                    Console.Write("\nDigite um número: ");
 
                     int numeroTabuada = Convert.ToInt32(Console.ReadLine());
 
@@ -64,13 +69,36 @@
                     Console.ReadLine();
                     continue;
                 }
+                else if (opcao == "6")
+                {
+                    if (historico.Count >= 1)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("--------------------------");
+                        Console.WriteLine("Histórico");
+                        Console.WriteLine("--------------------------");
+                        foreach (var hist in historico)
+                        {
+                            Console.WriteLine(hist);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nHistórico Indisponível!");
+                    }
+
+                    Console.WriteLine("\nPressione ENTER para voltar!");
+                    Console.ReadLine();
+                    continue;
+
+                }
 
 
-                Console.Write("Digite o Primeiro Número: ");
+                Console.Write("\nDigite o Primeiro Número: ");
                 string primeiroNumeroString = Console.ReadLine();
                 decimal primeiroNumero = Convert.ToDecimal(primeiroNumeroString);
 
-                Console.Write("Digite o Segundo Número: ");
+                Console.Write("\nDigite o Segundo Número: ");
                 string segundoNumeroString = Console.ReadLine();
                 decimal segundoNumero = Convert.ToDecimal(segundoNumeroString);
 
@@ -82,16 +110,19 @@
                 if (opcao == "1")
                 {
                     resultado = primeiroNumero + segundoNumero;
+                    historico.Add($"{primeiroNumero} + {segundoNumero} = {resultado}");
                 }
 
                 else if (opcao == "2")
                 {
                     resultado = primeiroNumero - segundoNumero;
+                    historico.Add($"{primeiroNumero} - {segundoNumero} = {resultado}");
                 }
 
                 else if (opcao == "3")
                 {
                     resultado = primeiroNumero * segundoNumero;
+                    historico.Add($"{primeiroNumero} * {segundoNumero} = {resultado}");
                 }
 
                 else if (opcao == "4")
@@ -100,6 +131,7 @@
                     if (segundoNumero != 0)
                     {
                         resultado = primeiroNumero / segundoNumero;
+                        historico.Add($"{primeiroNumero} / {segundoNumero} = {resultado}");
                     }
 
                     else
@@ -112,15 +144,15 @@
 
                 if (operacaoValida) 
                 {
-                    Console.WriteLine("Resultado: " + resultado.ToString("F2"));
+                    Console.WriteLine("\nResultado: " + resultado.ToString("F2"));
                 }
 
                 
-                Console.Write("\nDeseja fazer outro cálculo? (s/n): ");
+                Console.Write("\nDeseja fazer outro cálculo? (S/N): ");
                 
-                string continuar = Console.ReadLine().ToLower();
+                string continuar = Console.ReadLine().ToUpper();
 
-                if (continuar != "s")
+                if (continuar != "S")
                 {
                     calculadora = false;
                 }
@@ -128,7 +160,7 @@
             }
             
             Console.WriteLine("\nCalculadora Encerrada.");
-            Console.WriteLine("Pressione ENTER para sair!");
+            Console.WriteLine("\nPressione ENTER para sair!");
             Console.ReadLine();
         }
     }
