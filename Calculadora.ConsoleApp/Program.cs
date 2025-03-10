@@ -20,6 +20,7 @@
                 Console.WriteLine("2 - Subtrair");
                 Console.WriteLine("3 - Multiplicar");
                 Console.WriteLine("4 - Dividir");
+                Console.WriteLine("5 - Tabuada");
                 Console.WriteLine("S - Sair");
 
                 Console.WriteLine();
@@ -27,14 +28,39 @@
 
                 string opcao = Console.ReadLine().ToUpper();
 
-                if (opcao == "S")
+
+                if (opcao != "1" && opcao != "2" && opcao != "3" && opcao != "4" && opcao != "5" && opcao != "S")
+                {
+                    Console.WriteLine("Opcão Inválida!");
+                    Console.ReadLine();
+                    continue;
+                }
+                else if (opcao == "S")
                 {
                     calculadora = false;
                     break;
                 }
-                else if (opcao != "1" && opcao != "2" && opcao != "3" && opcao != "4") 
+                else if (opcao == "5")
                 {
-                    Console.WriteLine("Opcão Inválida!");
+                    Console.Clear();
+
+                    Console.WriteLine("--------------------------");
+                    Console.WriteLine("Tabuada");
+                    Console.WriteLine("--------------------------");
+
+                    Console.Write("Digite um número: ");
+
+                    int numeroTabuada = Convert.ToInt32(Console.ReadLine());
+
+                    for (int contador = 1; contador <= 10; contador++)
+                    {
+                        int resultadoTabuada = numeroTabuada * contador;
+
+                        Console.WriteLine($"{numeroTabuada} * {contador} = {resultadoTabuada}");
+
+                    }
+
+                    Console.WriteLine("\nPressione ENTER para voltar!");
                     Console.ReadLine();
                     continue;
                 }
@@ -42,14 +68,14 @@
 
                 Console.Write("Digite o Primeiro Número: ");
                 string primeiroNumeroString = Console.ReadLine();
-                int primeiroNumero = Convert.ToInt32(primeiroNumeroString);
+                decimal primeiroNumero = Convert.ToDecimal(primeiroNumeroString);
 
                 Console.Write("Digite o Segundo Número: ");
                 string segundoNumeroString = Console.ReadLine();
-                int segundoNumero = Convert.ToInt32(segundoNumeroString);
+                decimal segundoNumero = Convert.ToDecimal(segundoNumeroString);
 
 
-                int resultado = 0;
+                decimal resultado = 0;
                 bool operacaoValida = true;
 
 
@@ -86,11 +112,11 @@
 
                 if (operacaoValida) 
                 {
-                    Console.WriteLine("Resultado: " + resultado);
+                    Console.WriteLine("Resultado: " + resultado.ToString("F2"));
                 }
 
                 
-                Console.Write("Deseja fazer outro cálculo? (s/n): ");
+                Console.Write("\nDeseja fazer outro cálculo? (s/n): ");
                 
                 string continuar = Console.ReadLine().ToLower();
 
@@ -101,7 +127,8 @@
 
             }
             
-            Console.WriteLine("Calculadora Encerrada.");
+            Console.WriteLine("\nCalculadora Encerrada.");
+            Console.WriteLine("Pressione ENTER para sair!");
             Console.ReadLine();
         }
     }
