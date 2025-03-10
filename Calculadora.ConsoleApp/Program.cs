@@ -9,7 +9,10 @@
 
             string[] opcoesValidas = { "1", "2", "3", "4", "5", "6", "S" };
 
-            List<string> historico = new List<string>();
+            //List<string> historico = new List<string>();
+
+            string[] operacoesRealizadas = new string[10];
+            int indiceHistorico = 0;
 
             while (calculadora)
             {
@@ -70,27 +73,20 @@
                     continue;
                 }
                 else if (opcao == "6")
-                {
-                    if (historico.Count >= 1)
+                { 
+                    Console.Clear();
+                    Console.WriteLine("--------------------------");
+                    Console.WriteLine("Histórico");
+                    Console.WriteLine("--------------------------");
+                    foreach (var hist in operacoesRealizadas)
                     {
-                        Console.Clear();
-                        Console.WriteLine("--------------------------");
-                        Console.WriteLine("Histórico");
-                        Console.WriteLine("--------------------------");
-                        foreach (var hist in historico)
-                        {
+                        if (!string.IsNullOrEmpty(hist))
                             Console.WriteLine(hist);
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("\nHistórico Indisponível!");
                     }
 
                     Console.WriteLine("\nPressione ENTER para voltar!");
                     Console.ReadLine();
                     continue;
-
                 }
 
 
@@ -106,23 +102,31 @@
                 decimal resultado = 0;
                 bool operacaoValida = true;
 
+                if (indiceHistorico >= operacoesRealizadas.Length)
+                    indiceHistorico = 0;
 
                 if (opcao == "1")
                 {
                     resultado = primeiroNumero + segundoNumero;
-                    historico.Add($"{primeiroNumero} + {segundoNumero} = {resultado}");
+                    operacoesRealizadas[indiceHistorico] = $"{primeiroNumero} + {segundoNumero} = {resultado}";
+                    indiceHistorico++;
+                    //historico.Add($"{primeiroNumero} + {segundoNumero} = {resultado}");
                 }
 
                 else if (opcao == "2")
                 {
                     resultado = primeiroNumero - segundoNumero;
-                    historico.Add($"{primeiroNumero} - {segundoNumero} = {resultado}");
+                    operacoesRealizadas[indiceHistorico] = $"{primeiroNumero} - {segundoNumero} = {resultado}";
+                    indiceHistorico++;
+                    //historico.Add($"{primeiroNumero} - {segundoNumero} = {resultado}");
                 }
 
                 else if (opcao == "3")
                 {
                     resultado = primeiroNumero * segundoNumero;
-                    historico.Add($"{primeiroNumero} * {segundoNumero} = {resultado}");
+                    operacoesRealizadas[indiceHistorico] = $"{primeiroNumero} * {segundoNumero} = {resultado}";
+                    indiceHistorico++;
+                    //historico.Add($"{primeiroNumero} * {segundoNumero} = {resultado}");
                 }
 
                 else if (opcao == "4")
@@ -131,7 +135,10 @@
                     if (segundoNumero != 0)
                     {
                         resultado = primeiroNumero / segundoNumero;
-                        historico.Add($"{primeiroNumero} / {segundoNumero} = {resultado}");
+                        operacoesRealizadas[indiceHistorico] = $"{primeiroNumero} / {segundoNumero} = {resultado}";
+                        indiceHistorico++;
+
+                        //historico.Add($"{primeiroNumero} / {segundoNumero} = {resultado}");
                     }
 
                     else
