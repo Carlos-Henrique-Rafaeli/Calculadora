@@ -4,16 +4,15 @@
 
 ## Introdução
 
-Uma calculadora de console simples mas poderosa que permite realizar as quatro operações matemáticas.
+Calculadora simples que permite fazer as 4 operações básicas, calcular a tabuada e mostrar o histórico de operações.
 
 ## Funcionalidades
 
-- **Operações Básicas**: Realize somas, subtrações, multiplicações e divisões com facilidade.
-- **Suporte a Decimais**: Trabalhe com números que têm até duas casas decimais.
-- **Validação de Entrada**: A calculadora garante que apenas opções válidas sejam aceitas.
-- **Tratamento de Divisão por Zero**: A calculadora é capaz de validar erros de divisão por zero.
-- **Tabuada**: A calculadora é capaz de gerar a tabuada de um número informado.
-- **Histórico de Operações**: A calculadora é capaz de armazenar um histórico de operações.
+- **Operações Básicas**: Pode fazer somas, subtrações, divisões e multiplicações.
+- **Suporte a Decimais**: Pode ser utilizada com números decimais.
+- **Tratamento de Divisão por Zero**: Detecção de divisão por zero.
+- **Tabuada**: Ela calcula a tabuada de um número de 1 a 10.
+- **Histórico de Operações**: A calculadora armazena suas últimas operações matemáticas.
 
 ## Como utilizar
 
