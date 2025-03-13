@@ -4,7 +4,6 @@
     {
         static void Main(string[] args)
         {
-
             bool calculadora = true;
 
             string[] opcoesValidas = { "1", "2", "3", "4", "5", "6", "S" };
@@ -16,25 +15,7 @@
 
             while (calculadora)
             {
-                Console.Clear();
-                
-                Console.WriteLine("--------------------------");
-                Console.WriteLine("Calculadora Tabajara 2025");
-                Console.WriteLine("--------------------------");
-                Console.WriteLine();
-
-                Console.WriteLine("1 - Somar");
-                Console.WriteLine("2 - Subtrair");
-                Console.WriteLine("3 - Multiplicar");
-                Console.WriteLine("4 - Dividir");
-                Console.WriteLine("5 - Tabuada");
-                Console.WriteLine("6 - Hístórico");
-                Console.WriteLine("S - Sair");
-
-                Console.Write("\nEscolha uma opção: ");
-
-                string opcao = Console.ReadLine().ToUpper();
-
+                string opcao = ExibirMenu();
 
                 if (!opcoesValidas.Contains(opcao))
                 {
@@ -169,6 +150,30 @@
             Console.WriteLine("\nCalculadora Encerrada.");
             Console.WriteLine("\nPressione ENTER para sair!");
             Console.ReadLine();
+        }
+
+        static string ExibirMenu()
+        {
+            Console.Clear();
+
+            Console.WriteLine("--------------------------");
+            Console.WriteLine("Calculadora Tabajara 2025");
+            Console.WriteLine("--------------------------");
+            Console.WriteLine();
+
+            Console.WriteLine("1 - Somar");
+            Console.WriteLine("2 - Subtrair");
+            Console.WriteLine("3 - Multiplicar");
+            Console.WriteLine("4 - Dividir");
+            Console.WriteLine("5 - Tabuada");
+            Console.WriteLine("6 - Hístórico");
+            Console.WriteLine("S - Sair");
+
+            Console.Write("\nEscolha uma opção: ");
+
+            string opcao = Console.ReadLine()!.ToUpper();
+
+            return opcao;
         }
     }
 }
