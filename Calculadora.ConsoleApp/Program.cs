@@ -13,6 +13,13 @@
             {
                 string opcao = ExibirMenu();
 
+                if (!opcoesValidas.Contains(opcao))
+                {
+                    Console.WriteLine("Opcão Inválida!\nPressione ENTER para voltar!");
+                    Console.ReadLine();
+                    continue;
+                }
+
                 if (OpcaoSairFoiEscolhida(opcao))
                     break;
 
@@ -24,7 +31,6 @@
 
                 else
                     ExibirResultado(RealizarCalculo(opcao));
-
             }
 
         }
