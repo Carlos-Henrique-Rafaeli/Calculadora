@@ -135,7 +135,7 @@
             Console.Write("\nDigite o Primeiro Número: ");
             string primeiroNumeroString = Console.ReadLine()!;
             
-            while (String.IsNullOrEmpty(primeiroNumeroString) || !decimal.TryParse(primeiroNumeroString, out _))
+            while (VerificarStringNumero(primeiroNumeroString))
             {
                 Console.WriteLine("Número inválido!");
                 Console.Write("Digite o primeiro número novamente: ");
@@ -147,7 +147,7 @@
             Console.Write("\nDigite o Segundo Número: ");
             string segundoNumeroString = Console.ReadLine()!;
 
-            while (String.IsNullOrEmpty(segundoNumeroString) || !decimal.TryParse(segundoNumeroString, out _))
+            while (VerificarStringNumero(segundoNumeroString))
             {
                 Console.WriteLine("Número inválido!");
                 Console.Write("Digite o segundo número novamente: ");
@@ -164,19 +164,19 @@
             if (operacao == "1")
             {
                 resultado = primeiroNumero + segundoNumero;
-                operacoesRealizadas[indiceHistorico] = $"{primeiroNumero} + {segundoNumero} = {resultado}";
+                operacoesRealizadas[indiceHistorico] = $"{primeiroNumero} + {segundoNumero} = {resultado.ToString("F2")}";
             }
 
             else if (operacao == "2")
             {
                 resultado = primeiroNumero - segundoNumero;
-                operacoesRealizadas[indiceHistorico] = $"{primeiroNumero} - {segundoNumero} = {resultado}";
+                operacoesRealizadas[indiceHistorico] = $"{primeiroNumero} - {segundoNumero} = {resultado.ToString("F2")}";
             }
 
             else if (operacao == "3")
             {
                 resultado = primeiroNumero * segundoNumero;
-                operacoesRealizadas[indiceHistorico] = $"{primeiroNumero} * {segundoNumero} = {resultado}";
+                operacoesRealizadas[indiceHistorico] = $"{primeiroNumero} * {segundoNumero} = {resultado.ToString("F2")}";
             }
 
             else if (operacao == "4")
@@ -187,16 +187,28 @@
                     Console.WriteLine("Divisão por 0!");
                     Console.Write("Digite o segundo número novamente: ");
 
-                    segundoNumero = Convert.ToDecimal(Console.ReadLine());
-                }
+                    segundoNumeroString = Console.ReadLine()!;
+
+                    if (VerificarStringNumero(segundoNumeroString))
+                        continue;
+
+                    segundoNumero = Convert.ToDecimal(segundoNumeroString);
+                }             
 
                 resultado = primeiroNumero / segundoNumero;
-                operacoesRealizadas[indiceHistorico] = $"{primeiroNumero} / {segundoNumero} = {resultado}";
+                operacoesRealizadas[indiceHistorico] = $"{primeiroNumero} / {segundoNumero} = {resultado.ToString("F2")}";
             }
 
             indiceHistorico++;
 
             return resultado;
+        }
+
+        static bool VerificarStringNumero(string x)
+        {
+            bool verificacao = String.IsNullOrEmpty(x) || !decimal.TryParse(x, out _);
+
+            return verificacao;
         }
     }
 }
