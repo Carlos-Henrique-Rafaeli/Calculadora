@@ -133,10 +133,28 @@
         static decimal RealizarCalculo(string operacao)
         {
             Console.Write("\nDigite o Primeiro Número: ");
-            decimal primeiroNumero = Convert.ToDecimal(Console.ReadLine());
+            string primeiroNumeroString = Console.ReadLine()!;
+            
+            while (String.IsNullOrEmpty(primeiroNumeroString) || !decimal.TryParse(primeiroNumeroString, out _))
+            {
+                Console.WriteLine("Número inválido!");
+                Console.Write("Digite o primeiro número novamente: ");
+                primeiroNumeroString = Console.ReadLine()!;
+            }
+
+            decimal primeiroNumero = Convert.ToDecimal(primeiroNumeroString);
 
             Console.Write("\nDigite o Segundo Número: ");
-            decimal segundoNumero = Convert.ToDecimal(Console.ReadLine());
+            string segundoNumeroString = Console.ReadLine()!;
+
+            while (String.IsNullOrEmpty(segundoNumeroString) || !decimal.TryParse(segundoNumeroString, out _))
+            {
+                Console.WriteLine("Número inválido!");
+                Console.Write("Digite o segundo número novamente: ");
+                segundoNumeroString = Console.ReadLine()!;
+            }
+            
+            decimal segundoNumero = Convert.ToDecimal(segundoNumeroString);
 
             decimal resultado = 0;
 
