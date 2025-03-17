@@ -4,9 +4,6 @@ internal class Program
 {
     static string[] opcoesValidas = { "1", "2", "3", "4", "5", "6", "S" };
 
-    static string[] operacoesRealizadas = new string[10];
-    static int indiceHistorico = 0;
-
     static void Main(string[] args)
     {
         while (true)
@@ -110,7 +107,10 @@ internal class Program
         Console.WriteLine("--------------------------");
         Console.WriteLine("Histórico de Operações");
         Console.WriteLine("--------------------------");
-        foreach (var hist in operacoesRealizadas)
+
+        string[] historicoOperacoes = Calculadora.ObterHistoricoDeOperacoes();
+
+        foreach (var hist in historicoOperacoes)
         {
             if (!string.IsNullOrEmpty(hist))
                 Console.WriteLine(hist);
@@ -158,26 +158,14 @@ internal class Program
 
         decimal resultado = 0;
 
-        if (indiceHistorico >= operacoesRealizadas.Length)
-            indiceHistorico = 0;
-
         if (operacao == "1")
-        {
             resultado = Calculadora.Somar(primeiroNumero, segundoNumero);
-            operacoesRealizadas[indiceHistorico] = $"{primeiroNumero} + {segundoNumero} = {resultado.ToString("F2")}";
-        }
 
         else if (operacao == "2")
-        {
             resultado = Calculadora.Subtrair(primeiroNumero, segundoNumero);
-            operacoesRealizadas[indiceHistorico] = $"{primeiroNumero} - {segundoNumero} = {resultado.ToString("F2")}";
-        }
 
         else if (operacao == "3")
-        {
-            resultado = Calculadora.Multiplicar(primeiroNumero, segundoNumero); ;
-            operacoesRealizadas[indiceHistorico] = $"{primeiroNumero} * {segundoNumero} = {resultado.ToString("F2")}";
-        }
+            resultado = Calculadora.Multiplicar(primeiroNumero, segundoNumero);
 
         else if (operacao == "4")
         {
@@ -196,11 +184,9 @@ internal class Program
             }             
 
             resultado = Calculadora.Dividir(primeiroNumero, segundoNumero);
-            operacoesRealizadas[indiceHistorico] = $"{primeiroNumero} / {segundoNumero} = {resultado.ToString("F2")}";
+            
         }
-
-        indiceHistorico++;
-
+                
         return resultado;
     }
 
