@@ -86,16 +86,13 @@ internal class Program
         Console.WriteLine("--------------------------");
 
         Console.Write("\nDigite um número: ");
-
+                
         int numeroTabuada = Convert.ToInt32(Console.ReadLine());
-
-        for (int contador = 1; contador <= 10; contador++)
-        {
-            int resultadoTabuada = numeroTabuada * contador;
-
-            Console.WriteLine($"{numeroTabuada} * {contador} = {resultadoTabuada}");
-
-        }
+        
+        string[] linhasTabuada = Calculadora.GerarTabuada(numeroTabuada);
+        
+        for (int contador = 0; contador < linhasTabuada.Length; contador++)
+            Console.WriteLine(linhasTabuada[contador]);
 
         Console.WriteLine("\nPressione ENTER para voltar!");
         Console.ReadLine();
